@@ -7,7 +7,7 @@ var logger = require('morgan');
 require('dotenv').config({path:'variables.env'});
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.DATABASE);
+mongoose.connect('mongodb://sarb:sarbjan2018@ds141661.mlab.com:41661/200354904assignment2',{ useNewUrlParser:true});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
