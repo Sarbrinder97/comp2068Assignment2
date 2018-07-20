@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+/* mongoose schema to connect to mlab database */
 var playerSchema = new mongoose.Schema({
     name: {
         type: String,

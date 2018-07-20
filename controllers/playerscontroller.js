@@ -1,5 +1,5 @@
 var Player = require('../models/Player');
-
+/* exporting model schema to the controller  */
 exports.getPlayers = (req, res)=>{
     Player.find((err, players)=>{
         if (err){
