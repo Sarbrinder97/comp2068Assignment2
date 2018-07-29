@@ -1,0 +1,40 @@
+<!-- including header in index page -->
+<% include partials/header %>
+    <h1>
+        <%= title %>
+    </h1>
+    
+
+    <form method="POST" >
+           
+        <div class="form-group">
+    
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="<%= player.name %>">
+        </div>
+        <div class="form-group">
+    
+    
+            <label for="salary">Salary:</label>
+            <input type="text" id="salary" class="form-control" placeholder="salary" name="salary" value="<%= player.salary %>">
+    
+    
+        </div>
+        <div class="form-group">
+
+            <label for="contractDuration">Contract Duration:</label>
+            <input type="text" id="contractDuration" class="form-control" name="contractDuration" value="<%= player.contractDuration %>">
+    
+    
+        </div>
+        <div class="form-group">
+    
+            <label for="age">Age:</label>
+            <input type="number" id="age" class="form-control" name="age" value="<%= player.age %>">
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+    </form>
+    <!-- including footer in index page -->
+    <% include partials/footer %>

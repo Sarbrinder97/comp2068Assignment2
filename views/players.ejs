@@ -10,7 +10,7 @@
 
   
 <!--   table to show list of  players retrieved from mlab database-->  
-  <table class="table table-bordered" >
+  <table class="table table-bordered" style="padding:100px; margin:100px auto; width: 80%;">
     <thead>
       <tr>
         <th>Name</th>
@@ -40,11 +40,19 @@
             <%= players[i].age %>
           </td>
           <td>
-            <a href="/admin/edit/<%= players[i]._id %>" class="paper-btn btn-small">Edit</a>
+            <a href="/players/edit/<%= players[i]._id %>" class="btn btn-info btn-sm">
+              <span class="glyphicon glyphicon-pencil"></span>  
+            </a>
+            <!-- <button type="button" class="btn btn-default btn-sm" >
+          <span class="glyphicon glyphicon-pencil"> <a href="/admin/edit/<%= players[i]._id %>" class="paper-btn btn-small">Edit</a> </span> 
+        </button> -->
           </td>
           <td>
-            <a href="/admin/delete/<%= players[i]._id %>" class="paper-btn btn-small" onclick="return confirm('Are you sure you want to delete this?');">Delete</a>
-          </td>
+              <a href="/players/delete/<%= players[i]._id %>" class="btn btn-info btn-sm" onclick="return confirm('Are you sure you want to delete this?');">
+                  <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                </a>
+        <!--     <a href="/admin/delete/<%= players[i]._id %>" class="btn btn-info btn-sm" onclick="return confirm('Are you sure you want to delete this?');"><span class="glyphicon glyphicon-trash"></span></a>
+         -->  </td>
         </tr>
 
         <% } %>
