@@ -4,6 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser =require('body-parser');
+/* passport dependencies */
+const passport = require('passport');
+const session = require('express-session');
+const localStrategy = require('passport-local').Strategy;
+
 /* requiring mongoose and dotenv */
 require('dotenv').config({path:'variables.env'});
 
@@ -28,6 +33,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+/* passport config before controller references that works as middleware*/
+app.use(
+  session({
+    secret: 'any string value here',
+    resave: true,
+    saveUninitialized: false
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+const user = require('./models/User');
+passport.use(user.createStrategy());
+
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
