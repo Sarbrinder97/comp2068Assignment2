@@ -7,7 +7,9 @@ exports.getPlayers = (req, res)=>{
         } else{res.render('players',{
             title:'NBA Management App',
             heading:'All players',
-            players});
+            players,
+            user: req.user,
+          });
 
         }
     });
@@ -16,8 +18,9 @@ exports.getPlayers = (req, res)=>{
 /* this method will add players to mlab */
 exports.addPlayer = (req, res) => {
     res.render('addPlayer',{
-        title:'Add Player',
-        
+      title:'NBA Management App',
+        heading:'Add Player',
+        user:req.user
     })
 }
 
@@ -48,16 +51,17 @@ exports.createPlayer = (req, res) => {
         console.log(err);
       } else {
         res.render('editplayer', {
-          title: 'Edit',
+          title:'NBA Management App',
+        heading:'Edit',
           player,
-          
+          user:req.user
         });
       }
     });
   };
 
   exports.updatePlayer = (req, res) => {
-    // get year from last 4 characters of imageURL
+    
     
   
     Player.update({ _id: req.params.id }, req.body, (err) => {
@@ -69,5 +73,5 @@ exports.createPlayer = (req, res) => {
     });
   };
 exports.home = (req, res, next)=>{
-    res.render('index',{title:'NBA Management App'})
+    res.render('index',{title:'NBA Management App', user:req.user})
 };

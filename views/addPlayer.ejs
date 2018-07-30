@@ -1,11 +1,16 @@
 <!-- including header in index page -->
 <% include partials/header %>
     <h1>
-        <%= title %>
+        <%= heading %>
     </h1>
     
 
-    <form method="POST" action="/add">
+    
+    <div class="row flex-center" style=" margin:100px auto;">
+            <div class="sm-4 col">
+              <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                  <form method="POST" action="/add">
         <div class="form-group">
     
             <label for="name">Name:</label>
@@ -34,5 +39,10 @@
     
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+                </div>
+                
+              </div>
+            </div>
+          </div>
     <!-- including footer in index page -->
     <% include partials/footer %>
