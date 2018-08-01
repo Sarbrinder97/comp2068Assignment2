@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var playersController = require('../controllers/playersController');
+var playersController = require('../controllers/playerscontroller');
 var userController = require('../controllers/userController');
-var authController = require('../controllers/authController');
+var authController = require('../controllers/authcontroller');
 
 /* routes for diferent pages at web app */
 router.get('/', playersController.home);
