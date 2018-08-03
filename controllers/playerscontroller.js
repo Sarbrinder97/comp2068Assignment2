@@ -1,7 +1,11 @@
-var Player = require('../models/Player');
 /* exporting model schema to the controller  */
+var Player = require('../models/Player');
+
+/* this method will get players from mlab and will search for the player by keyword */
 exports.getPlayers = (req, res)=>{
-    Player.find((err, players)=>{
+  if(req.query.search){
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    Player.find({name: regex},(err, players)=>{
         if (err){
             res.render('error');
         } else{res.render('players',{
@@ -13,6 +17,21 @@ exports.getPlayers = (req, res)=>{
 
         }
     });
+  }
+    else{
+      Player.find((err, players)=>{
+        if (err){
+            res.render('error');
+        } else{res.render('players',{
+            title:'NBA Management App',
+            heading:'All players',
+            players,
+            user: req.user,
+          });
+
+        }
+    });
+    }
     
 };
 /* this method will add players to mlab */
@@ -74,4 +93,8 @@ exports.createPlayer = (req, res) => {
   };
 exports.home = (req, res, next)=>{
     res.render('index',{title:'NBA Management App', user:req.user})
+};
+/* method to replace regualr expresions in search bar */
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
