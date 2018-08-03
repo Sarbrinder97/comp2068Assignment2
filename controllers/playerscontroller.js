@@ -50,7 +50,7 @@ exports.createPlayer = (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.render('editplayer', {
+        res.render('editPlayer', {
           title:'NBA Management App',
         heading:'Edit',
           player,

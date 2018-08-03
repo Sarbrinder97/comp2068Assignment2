@@ -8,6 +8,7 @@ const bodyParser =require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
 const localStrategy = require('passport-local').Strategy;
+const googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 /* requiring mongoose and dotenv */
 require('dotenv').config({path:'variables.env'});
@@ -46,7 +47,20 @@ app.use(passport.session());
 
 const user = require('./models/User');
 passport.use(user.createStrategy());
-
+passport.use(
+  new googleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_CLIENT_URL
+  },
+  (request, accessToken, refreshToken, profile, done) => {
+    User.findOrCreate(
+      { username: profile.emails[0].value },
+      (err, user) => done(err, user)
+    );
+  }
+)
+);
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 

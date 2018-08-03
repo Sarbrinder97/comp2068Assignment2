@@ -21,5 +21,8 @@ router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/players');
   });
+
+  router.get('/google', authController.googlePre);
+router.get('/google/callback', authController.googlePost);
 module.exports = router;
 

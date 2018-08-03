@@ -18,3 +18,13 @@ exports.isLoggedIn = (req, res, next) => {
   }
   res.redirect('/login');
 };
+exports.googlePre = passport.authenticate('google', {
+  scope: [
+    'https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/plus.profile.emails.read'
+  ]
+});
+exports.googlePost = passport.authenticate('google', {
+  successRedirect: '/players',
+  failureRedirect: '/login'
+});
